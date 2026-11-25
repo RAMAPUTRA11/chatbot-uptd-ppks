@@ -121,10 +121,10 @@ header[data-testid="stHeader"] {
         font-size: 11px !important;
     }
     .wa-fab {
-        width: 50px !important;
-        height: 50px !important;
-        right: 16px !important;
-        bottom: 84px !important;
+        width: 44px !important;
+        height: 44px !important;
+        right: 18px !important;
+        bottom: 82px !important;
     }
 }
 
@@ -140,6 +140,10 @@ header[data-testid="stHeader"] {
     [data-testid="stChatInput"] {
         max-width: 540px !important;
     }
+    .wa-fab {
+        right: calc(50% - 252px) !important;
+        bottom: 84px !important;
+    }
 }
 
 /* Responsif Laptop / Desktop (>= 1025px) */
@@ -153,6 +157,10 @@ header[data-testid="stHeader"] {
     }
     [data-testid="stChatInput"] {
         max-width: 470px !important;
+    }
+    .wa-fab {
+        right: calc(50% - 218px) !important;
+        bottom: 84px !important;
     }
 }
 
@@ -257,28 +265,28 @@ header[data-testid="stHeader"] {
     border: 1px solid #cbe0dd;
 }
 
-/* Tombol WhatsApp melayang (hanya logo) */
+/* Tombol WhatsApp melayang (hanya logo) — sejajar di atas tombol send */
 .wa-fab {
     position: fixed;
-    right: 24px;
-    bottom: 92px;
-    width: 54px;
-    height: 54px;
+    right: calc(50% - 218px);
+    bottom: 84px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background-color: #25d366;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none !important;
-    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.36);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
     border: 2px solid #ffffff;
     z-index: 999;
     transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
 }
 .wa-fab:hover {
-    transform: translateY(-3px) scale(1.04);
+    transform: translateY(-2px) scale(1.04);
     background-color: #20bd5a;
-    box-shadow: 0 12px 24px rgba(37, 211, 102, 0.45);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.45);
 }
 
 div.stButton > button,
@@ -502,7 +510,7 @@ for idx, msg in enumerate(st.session_state.messages):
 safe_wa_url = html.escape(WA_CHAT_URL, quote=True)
 safe_wa_title = html.escape(f"Chat WhatsApp ({WA_CHAT_URL})")
 wa_svg = (
-    '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" '
+    '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" '
     'fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
     '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 '
     '8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 '
