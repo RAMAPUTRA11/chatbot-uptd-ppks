@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 # Ganti dengan nomor WhatsApp resmi UPTD PPKS (format: 628xxxxxxxxxx)
-WA_NUMBER = "6288218511768"
+WA_NUMBER = "6281324446188"
 WA_DEFAULT_TEXT = "Halo Admin UPTD PPKS, saya ingin berkonsultasi terkait layanan PSM."
 WA_CHAT_URL = f"https://wa.me/{WA_NUMBER}?text={quote(WA_DEFAULT_TEXT)}"
 
