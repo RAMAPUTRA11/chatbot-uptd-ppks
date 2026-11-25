@@ -70,7 +70,7 @@ st.markdown(
     background-color: #f8fafa;
     border: 1px solid #dce5e4;
     border-radius: 18px;
-    padding: 1rem 1.1rem 6rem 1.1rem !important;
+    padding: 1rem 1.1rem 6.5rem 1.1rem !important;
     margin-top: 1rem !important;
     margin-bottom: 1.5rem !important;
     box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
@@ -103,7 +103,7 @@ header[data-testid="stHeader"] {
         border-right: none !important;
         margin-top: 0 !important;
         margin-bottom: 0 !important;
-        padding: 0.85rem 0.85rem 6rem 0.85rem !important;
+        padding: 0.85rem 0.85rem 6.5rem 0.85rem !important;
         box-shadow: none !important;
     }
     [data-testid="stChatInput"] {
@@ -120,9 +120,11 @@ header[data-testid="stHeader"] {
     .psm-subtitle {
         font-size: 11px !important;
     }
-    .wa-footer-card {
-        padding: 10px 12px !important;
-        border-radius: 12px !important;
+    .wa-fab {
+        width: 50px !important;
+        height: 50px !important;
+        right: 16px !important;
+        bottom: 84px !important;
     }
 }
 
@@ -131,7 +133,7 @@ header[data-testid="stHeader"] {
     .block-container {
         max-width: 540px !important;
         border-radius: 20px !important;
-        padding: 1.25rem 1.35rem 6rem 1.35rem !important;
+        padding: 1.25rem 1.35rem 6.5rem 1.35rem !important;
         margin-top: 1.5rem !important;
         box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08) !important;
     }
@@ -145,7 +147,7 @@ header[data-testid="stHeader"] {
     .block-container {
         max-width: 470px !important;
         border-radius: 22px !important;
-        padding: 1.2rem 1.25rem 6rem 1.25rem !important;
+        padding: 1.2rem 1.25rem 6.5rem 1.25rem !important;
         margin-top: 1.4rem !important;
         box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09) !important;
     }
@@ -254,61 +256,31 @@ header[data-testid="stHeader"] {
     word-break: break-all;
     border: 1px solid #cbe0dd;
 }
-.wa-footer-card {
-    margin-top: 18px;
-    padding: 12px 14px;
-    background-color: #ffffff;
-    border: 1px solid #dce5e4;
-    border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-}
-.wa-footer-link {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    text-decoration: none !important;
-    color: #1e293b !important;
-}
-.wa-footer-link:hover .wa-footer-title {
-    color: #0e766c;
-}
-.wa-logo-badge {
-    width: 38px;
-    height: 38px;
+
+/* Tombol WhatsApp melayang (hanya logo) */
+.wa-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 92px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     background-color: #25d366;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 3px 8px rgba(37, 211, 102, 0.28);
+    text-decoration: none !important;
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.36);
+    border: 2px solid #ffffff;
+    z-index: 999;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
 }
-.wa-footer-text-group {
-    min-width: 0;
-    flex: 1;
+.wa-fab:hover {
+    transform: translateY(-3px) scale(1.04);
+    background-color: #20bd5a;
+    box-shadow: 0 12px 24px rgba(37, 211, 102, 0.45);
 }
-.wa-footer-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.3;
-    transition: color 0.15s ease;
-}
-.wa-footer-url {
-    font-family: monospace;
-    font-size: 11.5px;
-    color: #0e766c;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 2px;
-}
-.wa-footer-arrow {
-    font-size: 14px;
-    font-weight: 700;
-    color: #118a7e;
-    flex-shrink: 0;
-}
+
 div.stButton > button,
 button[data-testid="stBaseButton-secondary"] {
     width: 100% !important;
@@ -528,9 +500,9 @@ for idx, msg in enumerate(st.session_state.messages):
                 st.rerun()
 
 safe_wa_url = html.escape(WA_CHAT_URL, quote=True)
-safe_wa_display = html.escape(f"https://wa.me/{WA_NUMBER}")
+safe_wa_title = html.escape(f"Chat WhatsApp ({WA_CHAT_URL})")
 wa_svg = (
-    '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" '
+    '<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" '
     'fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
     '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 '
     '8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 '
@@ -539,16 +511,8 @@ wa_svg = (
 )
 
 st.markdown(
-    f'<div class="wa-footer-card">'
-    f'<a class="wa-footer-link" href="{safe_wa_url}" target="_blank" rel="noopener noreferrer">'
-    f'<div class="wa-logo-badge">{wa_svg}</div>'
-    f'<div class="wa-footer-text-group">'
-    f'<div class="wa-footer-title">Chat Langsung WhatsApp UPTD PPKS</div>'
-    f'<div class="wa-footer-url">{safe_wa_display}</div>'
-    f'</div>'
-    f'<div class="wa-footer-arrow">↗</div>'
-    f'</a>'
-    f'</div>',
+    f'<a class="wa-fab" href="{safe_wa_url}" target="_blank" rel="noopener noreferrer" '
+    f'aria-label="{safe_wa_title}" title="{safe_wa_title}">{wa_svg}</a>',
     unsafe_allow_html=True,
 )
 
